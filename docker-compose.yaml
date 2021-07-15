@@ -5,7 +5,7 @@ services:
     env_file:
       - .env
     volumes:
-      - dbdata:/var/lib/postgresql/dbdata
+      - dbdata:/var/lib/postgresql/data
     ports:
       - 3333:5432
     healthcheck:
@@ -24,3 +24,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
+volumes:
+  dbdata:
+    external: true
