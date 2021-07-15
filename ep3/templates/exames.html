@@ -1,0 +1,13 @@
+{% if exames %}
+<h3>Todos os exames:</h3>
+<ul>
+  {% for exame in exames %}
+  <li>
+    <a href="{% url 'exame' exame.id %}">{{ exame }}</a>
+  </li>
+  {% endfor %}
+  <button onClick="javascript:history.go(-1);">Voltar</button>
+</ul>
+{% else %}
+<p>Sem exames cadastrados.</p>
+{% endif %}

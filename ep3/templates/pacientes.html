@@ -1,0 +1,13 @@
+{% if pacientes %}
+<h3>Todos os pacientes:</h3>
+<ul>
+  {% for paciente in pacientes %}
+  <li>
+    <a href="{% url 'paciente' paciente.id %}">{{ paciente }}</a>
+  </li>
+  {% endfor %}
+  <button onClick="javascript:history.go(-1);">Voltar</button>
+</ul>
+{% else %}
+<p>Sem pacientes cadastrados.</p>
+{% endif %}

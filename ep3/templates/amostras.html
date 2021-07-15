@@ -1,0 +1,13 @@
+{% if amostras %}
+<h3>Todos os amostras:</h3>
+<ul>
+  {% for amostra in amostras %}
+  <li>
+    <a href="{% url 'amostra' amostra.id %}">{{ amostra }}</a>
+  </li>
+  {% endfor %}
+  <button onClick="javascript:history.go(-1);">Voltar</button>
+</ul>
+{% else %}
+<p>Sem amostras cadastrados.</p>
+{% endif %}

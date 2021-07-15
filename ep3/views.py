@@ -4,10 +4,9 @@ from .models import Paciente, Exame, Amostra
 
 
 def index(req):
-    pacientes = Paciente.objects.all()
-    exames = Exame.objects.all()
-    amostras = Amostra.objects.all()
-
+    pacientes = Paciente.objects.all()[:5]
+    exames = Exame.objects.all()[:5]
+    amostras = Amostra.objects.all()[:5]
     context = {
         'dados': {
             "pacientes": pacientes,
@@ -15,12 +14,12 @@ def index(req):
             "amostras": amostras
         }
     }
-
     return render(req, 'all.html', context)
 
 
 def pacientes(req):
-    return
+    pacientes = Paciente.objects.all()
+    return render(req, 'pacientes.html', {'pacientes': pacientes})
 
 
 def paciente(req, id):
@@ -28,7 +27,8 @@ def paciente(req, id):
 
 
 def exames(req):
-    return
+    exames = Exame.objects.all()
+    return render(req, 'exames.html', {'exames': exames})
 
 
 def exame(req, id):
@@ -36,7 +36,8 @@ def exame(req, id):
 
 
 def amostras(req):
-    return
+    amostras = Amostra.objects.all()
+    return render(req, 'amostras.html', {'amostras': amostras})
 
 
 def amostra(req, id):
