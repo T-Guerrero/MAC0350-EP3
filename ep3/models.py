@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models.lookups import LessThan
 
 # Create your models here.
 

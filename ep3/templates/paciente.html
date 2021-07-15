@@ -1,0 +1,37 @@
+<h3>Dados do paciente {{paciente.nome}}</h3>
+<ul>
+  <li><strong>Código do paciente: </strong>{{paciente.id}}</li>
+  <li><strong>Nome: </strong> {{paciente.nome}}</li>
+  <li><strong>CPF: </strong> {{paciente.cpf}}</li>
+  <li>
+    <strong>Data de nascimento: </strong>
+    {{paciente.data_nascimento }}
+  </li>
+  <li><strong>Endereço: </strong> {{paciente.endereco}}</li>
+</ul>
+<hr />
+<h3>Exames realizados:</h3>
+{% for exame in exames %}
+<ul>
+  <li><strong>Código: </strong> {{exame.0}}</li>
+  <li>
+    <strong>Data de solicitação do exame: </strong>
+    {{exame.1}}
+  </li>
+  <li><strong>Data de execução do exame: </strong> {{exame.2}}</li>
+  <li><strong>Tipo de exame: </strong> {{exame.3}}</li>
+  <li><strong>Vírus: </strong> {{exame.4}}</li>
+</ul>
+<hr />
+{% endfor %}
+<h3>Amostras coletadas:</h3>
+{% for amostra in amostras %}
+<ul>
+  <li><strong>Código da amostra: </strong>{{amostra.0}}</li>
+  <li><strong>Código do exame: </strong>{{amostra.1}}</li>
+  <li><strong>Data de coleta: </strong>{{amostra.2}}</li>
+  <li><strong>Material da amostra: </strong>{{amostra.3}}</li>
+</ul>
+<hr />
+{% endfor %}
+<button onClick="javascript:history.go(-1);">Voltar</button>
