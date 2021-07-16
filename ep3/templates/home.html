@@ -1,0 +1,20 @@
+{% extends 'base.html' %} 
+{% load custom_filters %} 
+{% block content %} 
+  {% for chave, valor in dados.items %} 
+    {% if valor %}
+      <p>{{ chave|capfirst }}:</p>
+      <ul>
+        {% for entidade in valor %}
+        <li>
+          <a href="{% url chave|remove_last_char entidade.id %}">{{ entidade }}</a>
+        </li>
+        {% endfor %} {% if valor|length > 5 %}
+        <a href="{% url chave %}">Ver Mais</a>
+        {% endif %}
+      </ul>
+    {% else %}
+      <p>Sem {{ chave }} cadastrados.</p>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

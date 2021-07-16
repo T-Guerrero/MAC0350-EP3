@@ -7,7 +7,7 @@ from .models import Paciente, Exame, Amostra
 cursor = connection.cursor()
 
 
-def index(req):
+def home(req):
     pacientes = Paciente.objects.all()[:5]
     exames = Exame.objects.all()[:5]
     amostras = Amostra.objects.all()[:5]
@@ -18,7 +18,7 @@ def index(req):
             "amostras": amostras
         }
     }
-    return render(req, 'all.html', context)
+    return render(req, 'home.html', context)
 
 
 def pacientes(req):

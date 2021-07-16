@@ -1,15 +1,18 @@
-<h3>
-  Amostra do paciente {{amostra.paciente.nome}} no exame {{amostra.exame.id}}
-</h3>
-<ul>
-  <li><strong>Código da amostra: </strong>{{amostra.id}}</li>
-  <li><strong>Código do paciente: </strong>{{amostra.paciente.id}}</li>
-  <li><strong>Nome do paciente: </strong> {{amostra.paciente.nome}}</li>
-  <li><strong>CPF do paciente: </strong> {{amostra.paciente.cpf}}</li>
-  <li><strong>Data de coleta: </strong>{{amostra.data_coleta}}</li>
-  <li><strong>Material da amostra: </strong>{{amostra.tipo_material}}</li>
-  <li><strong>Código do exame: </strong>{{amostra.exame.id}}</li>
-  <li><strong>Vírus: </strong>{{amostra.exame.virus}}</li>
-  <li><strong>Tipo do exame: </strong>{{amostra.exame.tipo}}</li>
-</ul>
-<button onClick="javascript:history.go(-1);">Voltar</button>
+{% extends 'base.html' %}
+{% block content %}
+  <h3>
+    Amostra do paciente {{amostra.paciente.nome}} no exame {{amostra.exame.id}}
+  </h3>
+  <ul>
+    <li><strong>Código da amostra: </strong>{{amostra.id}}</li>
+    <li><strong>Código do paciente: </strong>{{amostra.paciente.id}}</li>
+    <li><strong>Nome do paciente: </strong> {{amostra.paciente.nome}}</li>
+    <li><strong>CPF do paciente: </strong> {{amostra.paciente.cpf}}</li>
+    <li><strong>Data de coleta: </strong>{{amostra.data_coleta}}</li>
+    <li><strong>Material da amostra: </strong>{{amostra.tipo_material}}</li>
+    <li><strong>Código do exame: </strong>{{amostra.exame.id}}</li>
+    <li><strong>Vírus: </strong>{{amostra.exame.virus}}</li>
+    <li><strong>Tipo do exame: </strong>{{amostra.exame.tipo}}</li>
+  </ul>
+  <button onClick="javascript:history.go(-1);">Voltar</button>
+{% endblock %}

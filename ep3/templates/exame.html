@@ -1,26 +1,29 @@
-<h3>
-  Exame de {{exame.tipo}}/{{ exame.virus }} do paciente {{exame.paciente.nome}}
-</h3>
-<ul>
-  <li><strong>Código do exame: </strong> {{exame.id}}</li>
-  <li><strong>Nome do paciente: </strong> {{exame.paciente.nome}}</li>
-  <li><strong>CPF do paciente: </strong> {{exame.paciente.cpf}}</li>
-  <li>
-    <strong>Data de solicitação do exame: </strong>
-    {{exame.data_solicitacao}}
-  </li>
-  <li><strong>Data de execução do exame: </strong> {{exame.data_execucao}}</li>
-  <li><strong>Tipo de exame: </strong> {{exame.tipo}}</li>
-  <li><strong>Vírus: </strong> {{exame.virus}}</li>
-</ul>
-<hr />
-<h3>Amostras coletadas para esse exame:</h3>
-{% for amostra in amostras %}
-<ul>
-  <li><strong>Código da amostra: </strong>{{amostra.0}}</li>
-  <li><strong>Data de coleta: </strong>{{amostra.1}}</li>
-  <li><strong>Material da amostra: </strong>{{amostra.2}}</li>
-</ul>
-<hr />
-{% endfor %}
-<button onClick="javascript:history.go(-1);">Voltar</button>
+{% extends 'base.html' %}
+{% block content %}
+  <h3>
+    Exame de {{exame.tipo}}/{{ exame.virus }} do paciente {{exame.paciente.nome}}
+  </h3>
+  <ul>
+    <li><strong>Código do exame: </strong> {{exame.id}}</li>
+    <li><strong>Nome do paciente: </strong> {{exame.paciente.nome}}</li>
+    <li><strong>CPF do paciente: </strong> {{exame.paciente.cpf}}</li>
+    <li>
+      <strong>Data de solicitação do exame: </strong>
+      {{exame.data_solicitacao}}
+    </li>
+    <li><strong>Data de execução do exame: </strong> {{exame.data_execucao}}</li>
+    <li><strong>Tipo de exame: </strong> {{exame.tipo}}</li>
+    <li><strong>Vírus: </strong> {{exame.virus}}</li>
+  </ul>
+  <hr />
+  <h3>Amostras coletadas para esse exame:</h3>
+  {% for amostra in amostras %}
+    <ul>
+      <li><strong>Código da amostra: </strong>{{amostra.0}}</li>
+      <li><strong>Data de coleta: </strong>{{amostra.1}}</li>
+      <li><strong>Material da amostra: </strong>{{amostra.2}}</li>
+    </ul>
+    <hr />
+  {% endfor %}
+  <button onClick="javascript:history.go(-1);">Voltar</button>
+{% endblock %}
