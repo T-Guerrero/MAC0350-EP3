@@ -72,6 +72,12 @@ def create_paciente(req):
         })
 
 
+def delete_paciente(req, id):
+    paciente = get_object_or_404(Paciente, id=id)
+    paciente.delete()
+    return HttpResponseRedirect(reverse('pacientes'))
+
+
 def exames(req):
     exames = Exame.objects.all()
     return render(req, 'exames.html', {'exames': exames})
@@ -137,6 +143,12 @@ def create_exame(req):
         })
 
 
+def delete_exame(req, id):
+    exame = get_object_or_404(Exame, id=id)
+    exame.delete()
+    return HttpResponseRedirect(reverse('exames'))
+
+
 def amostras(req):
     amostras = Amostra.objects.all()
     return render(req, 'amostras.html', {'amostras': amostras})
@@ -188,6 +200,12 @@ def create_amostra(req):
             'exames': exames,
             'error_message': "Amostra inválida",
         })
+
+
+def delete_amostra(req, id):
+    amostra = get_object_or_404(Amostra, id=id)
+    amostra.delete()
+    return HttpResponseRedirect(reverse('amostras'))
 
 # Funções auxiliares
 

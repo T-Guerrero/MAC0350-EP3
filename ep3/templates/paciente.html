@@ -36,5 +36,6 @@
     </ul>
     <hr />
   {% endfor %}
+  <a href="{% url "delete_paciente" paciente.id %}">Deletar</a>
   <button onClick="javascript:history.go(-1);">Voltar</button>
 {% endblock %}
