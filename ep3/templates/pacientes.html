@@ -8,6 +8,7 @@
         <a href="{% url 'paciente' paciente.id %}">{{ paciente }}</a>
       </li>
       {% endfor %}
+       <a href="{% url "new_paciente" %}">Cadastrar</a>
       <button onClick="javascript:history.go(-1);">Voltar</button>
     </ul>
   {% else %}

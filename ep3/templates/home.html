@@ -9,9 +9,11 @@
         <li>
           <a href="{% url chave|remove_last_char entidade.id %}">{{ entidade }}</a>
         </li>
-        {% endfor %} {% if valor|length > 5 %}
-        <a href="{% url chave %}">Ver Mais</a>
+        {% endfor %}
+        {% if valor|length > 5 %}
+          <a href="{% url chave %}">Ver Mais</a>
         {% endif %}
+        <a href="{% url "new_"|add:chave|remove_last_char %}">Cadastrar</a>
       </ul>
     {% else %}
       <p>Sem {{ chave }} cadastrados.</p>

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'forms.css' %}">
+{% block content %}
+  <div class="form-content">
+    <h1>Cadastrar novo exame</h1>
+    <form action="{% url 'create_exame' %}" method="post">
+      {% csrf_token %}
+      {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+      {% endif %}
+
+      {% if pacientes %}
+        <div class="field">
+          <label for="paciente">Paciente: </label>
+          <select id="paciente" name="paciente">
+            <option disabled selected>Escolha um paciente</option>
+            {% for paciente in pacientes %}
+              <option value="{{paciente.id}}">{{paciente}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      {% endif %}
+      
+      <div class="field">
+        <label for="virus">Virus: </label>
+        <input type="text" name="virus" id="virus">
+      </div>
+
+      {% if tipos %}
+        <div class="field">
+          <label for="tipo">Tipo: </label>
+          <select name="tipo">
+            <option disabled selected>Escolha um tipo</option>
+            {% for tipo in tipos %}
+              <option value="{{tipo}}">{{tipo}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      {% endif %}
+
+      <div class="field">
+        <label for="data_solicitacao">Data de solicitação: </label>
+        <input type="date" name="data_solicitacao" id="data_solicitacao">
+        <input type="time" name="tempo_solicitacao" id="tempo_solicitacao">
+      </div>
+
+      <div class="field">
+        <label for="data_execucao">Data de execução: </label>
+        <input type="date" name="data_execucao" id="data_execucao">
+        <input type="time" name="tempo_execucao" id="tempo_execucao">
+      </div>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+  <button onClick="javascript:history.go(-1);">Voltar</button>
+{% endblock %}

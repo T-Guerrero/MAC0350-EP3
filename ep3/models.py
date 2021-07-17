@@ -25,7 +25,7 @@ class Exame(models.Model):
     data_execucao = models.DateTimeField('Data de Execução')
 
     def __str__(self):
-        return self.paciente.cpf + ' - ' + self.virus + ' | ' + str(self.data_solicitacao) + ' - ' + str(self.data_execucao)
+        return 'CPF: ' + self.paciente.cpf + ' | ' + self.tipo + '/' + self.virus
 
 
 class Amostra(models.Model):
@@ -35,4 +35,4 @@ class Amostra(models.Model):
     tipo_material = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.paciente.cpf + ' - ' + self.exame.tipo + '/' + self.exame.virus + ' | ' + str(self.data_coleta)
+        return 'CPF: ' + self.paciente.cpf + ' | ' + self.exame.tipo + '/' + self.exame.virus + ' - ' + self.tipo_material

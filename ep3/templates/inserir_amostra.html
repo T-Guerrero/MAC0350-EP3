@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'forms.css' %}">
+{% block content %}
+  <div class="form-content">
+    <h1>Cadastrar nova amostra</h1>
+    <form action="{% url 'create_amostra' %}" method="post">
+      {% csrf_token %}
+      {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+      {% endif %}
+
+      {% if pacientes %}
+        <div class="field">
+          <label for="paciente">Paciente: </label>
+          <select id="paciente" name="paciente">
+            <option disabled selected>Escolha um paciente</option>
+            {% for paciente in pacientes %}
+              <option value="{{paciente.id}}">{{paciente}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      {% endif %}
+
+      {% if exames %}
+        <div class="field">
+          <label for="exame">Exame: </label>
+          <select id="exame" name="exame">
+            <option disabled selected>Escolha um exame</option>
+            {% for exame in exames %}
+              <option value="{{exame.id}}">{{exame}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      {% endif %}
+      
+      <div class="field">
+        <label for="data_coleta">Data de coleta: </label>
+        <input type="date" name="data_coleta" id="data_coleta">
+        <input type="time" name="tempo_coleta" id="tempo_coleta">
+      </div>
+
+      <div class="field">
+        <label for="tipo_material">Tipo de material: </label>
+        <input type="text" name="tipo_material" id="tipo_material">
+      </div>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+  <button onClick="javascript:history.go(-1);">Voltar</button>
+{% endblock %}

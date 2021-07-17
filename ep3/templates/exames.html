@@ -8,6 +8,7 @@
         <a href="{% url 'exame' exame.id %}">{{ exame }}</a>
       </li>
       {% endfor %}
+      <a href="{% url "new_exame" %}">Cadastrar</a>
       <button onClick="javascript:history.go(-1);">Voltar</button>
     </ul>
   {% else %}
