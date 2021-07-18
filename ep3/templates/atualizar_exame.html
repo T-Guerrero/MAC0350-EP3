@@ -3,8 +3,8 @@
 <link rel="stylesheet" type="text/css" href="{% static 'forms.css' %}">
 {% block content %}
   <div class="form-content">
-    <h1>Cadastrar novo exame</h1>
-    <form action="{% url 'create_exame' %}" method="post">
+    <h1>Atualizar exame {{ exame.id }}</h1>
+    <form action="{% url 'update_exame' exame.id %}" method="post">
       {% csrf_token %}
       {% if error_message %}
         <p><strong>Exame inválido</strong></p>
@@ -60,7 +60,7 @@
         <input type="time" name="tempo_execucao" id="tempo_execucao" value="{{ exame.tempo_execucao }}">
       </div>
 
-      <button type="submit">Cadastrar</button>
+      <button type="submit">Atualizar</button>
     </form>
   </div>
   <button onClick="javascript:history.go(-1);">Voltar</button>

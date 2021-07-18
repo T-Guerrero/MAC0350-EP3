@@ -3,8 +3,8 @@
 <link rel="stylesheet" type="text/css" href="{% static 'forms.css' %}">
 {% block content %}
   <div class="form-content">
-    <h1>Cadastrar novo paciente</h1>
-    <form action="{% url 'create_paciente' %}" method="post">
+    <h1>Atualizar paciente {{ paciente.nome }}</h1>
+    <form action="{% url 'update_paciente' paciente.id %}" method="post">
       {% csrf_token %}
       {% if error_message %}
         <p><strong>Paciente inválido</strong></p>
@@ -31,7 +31,7 @@
         <input type="text" name="endereco" id="endereco" value="{{ paciente.endereco }}">
       </div>
 
-      <button type="submit">Cadastrar</button>
+      <button type="submit">Atualizar</button>
     </form>
   </div>
   <button onClick="javascript:history.go(-1);">Voltar</button>

@@ -3,8 +3,8 @@
 <link rel="stylesheet" type="text/css" href="{% static 'forms.css' %}">
 {% block content %}
   <div class="form-content">
-    <h1>Cadastrar nova amostra</h1>
-    <form action="{% url 'create_amostra' %}" method="post">
+    <h1>Atualizar amostra {{ amostra.id }}</h1>
+    <form action="{% url 'update_amostra' amostra.id %}" method="post">
       {% csrf_token %}
       {% if error_message %}
         <p><strong>Amostra inválida</strong></p>
@@ -18,9 +18,9 @@
             <option disabled selected>Escolha um paciente</option>
             {% for paciente in pacientes %}
               {% if paciente.id == amostra.paciente_id %}
-                <option selected value="{{paciente.id}}">{{paciente}}</option>
+                <option selected value="{{ paciente.id }}">{{ paciente }}</option>
               {% else %}
-                <option value="{{paciente.id}}">{{paciente}}</option>
+                <option value="{{ paciente.id }}">{{ paciente }}</option>
               {% endif %}
             {% endfor %}
           </select>
@@ -32,11 +32,11 @@
           <label for="exame">Exame: </label>
           <select id="exame" name="exame">
             <option disabled selected>Escolha um exame</option>
-            {% for tipo in tipos %}
-              {% if tipo == exame.tipo %}
-                <option selected value="{{ tipo }}">{{ tipo }}</option>
+            {% for exame in exames %}
+              {% if exame.id == amostra.exame_id %}
+                <option selected value="{{ exame.id }}">{{ exame }}</option>
               {% else %}
-                <option value="{{tipo}}">{{tipo}}</option>
+                <option value="{{ exame.id }}">{{ exame }}</option>
               {% endif %}
             {% endfor %}
           </select>
@@ -51,10 +51,10 @@
 
       <div class="field">
         <label for="tipo_material">Tipo de material: </label>
-        <input type="text" name="tipo_material" id="tipo_material" value="{{amostra.tipo_material}}">
+        <input type="text" name="tipo_material" id="tipo_material" value="{{ amostra.tipo_material }}">
       </div>
 
-      <button type="submit">Cadastrar</button>
+      <button type="submit">Atualizar</button>
     </form>
   </div>
   <button onClick="javascript:history.go(-1);">Voltar</button>

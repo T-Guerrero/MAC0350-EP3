@@ -14,6 +14,7 @@
     <li><strong>Vírus: </strong>{{amostra.exame.virus}}</li>
     <li><strong>Tipo do exame: </strong>{{amostra.exame.tipo}}</li>
   </ul>
+  <a href="{% url "edit_amostra" amostra.id %}">Atualizar</a>
   <a href="{% url "delete_amostra" amostra.id %}">Deletar</a>
   <button onClick="javascript:history.go(-1);">Voltar</button>
 {% endblock %}

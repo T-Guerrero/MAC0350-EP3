@@ -25,6 +25,7 @@
     </ul>
     <hr />
   {% endfor %}
+  <a href="{% url "edit_exame" exame.id %}">Atualizar</a>
   <a href="{% url "delete_exame" exame.id %}">Deletar</a>
   <button onClick="javascript:history.go(-1);">Voltar</button>
 {% endblock %}
