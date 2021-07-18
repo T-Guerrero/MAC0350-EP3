@@ -1,0 +1,26 @@
+.title {
+  margin-bottom: 0;
+}
+.subtitle {
+  margin: 5px 10px;
+  color: rgba(78, 77, 77, 0.7);
+}
+
+table {
+  width: 50%;
+  margin: 15px 0;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 8px;
+  border: 1px solid black;
+}
+
+table th {
+  padding: 12px 0;
+  background-color: darkslateblue;
+  color: white;
+}

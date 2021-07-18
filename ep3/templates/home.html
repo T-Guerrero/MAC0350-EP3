@@ -1,22 +1,32 @@
 {% extends 'base.html' %} 
-{% load custom_filters %} 
-{% block content %} 
+{% load custom_filters %}
+{% load static %}
+{% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
   {% for chave, valor in dados.items %} 
     {% if valor %}
-      <p>{{ chave|capfirst }}:</p>
-      <ul>
-        {% for entidade in valor %}
-        <li>
-          <a href="{% url chave|remove_last_char entidade.id %}">{{ entidade }}</a>
-        </li>
-        {% endfor %}
-        {% if valor|length > 5 %}
-          <a href="{% url chave %}">Ver Mais</a>
-        {% endif %}
-        <a href="{% url "new_"|add:chave|remove_last_char %}">Cadastrar</a>
-      </ul>
+      <h2 class="title">{{ chave|capfirst }}</h2>
+      <h4 class="subtitle">Últimos 5 cadastrados</h4>
+      <table>
+      <tr>
+        <th>ID</th>
+        <th>{{ chave|remove_last_char|capfirst }}</th>
+        <th>Detalhes</th>
+      </tr>
+      {%for entidade in valor %}
+        <tr>
+          <td>{{ entidade.id }}</td>
+          <td>{{ entidade }}</td>
+          <td><a href="{% url chave|remove_last_char entidade.id %}">Veja Mais</a></td>
+        </tr>
+      {% endfor %}
+      </table>
+      {% if valor|length > 5 %}
+        <button href="{% url chave %}">Ver Todos</button>
+      {% endif %}
     {% else %}
-      <p>Sem {{ chave }} cadastrados.</p>
+      <h2>Sem {{ chave }} cadastrados.</h2>
     {% endif %}
+    <a href="{% url "new_"|add:chave|remove_last_char %}">Cadastrar</a>
   {% endfor %}
 {% endblock %}

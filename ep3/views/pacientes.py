@@ -6,7 +6,8 @@ from .general import *
 
 def pacientes(req):
     pacientes = Paciente.objects.all()
-    return render(req, 'pacientes.html', {'pacientes': pacientes})
+    keys = ['ID', 'CPF', 'Nome', 'Data de Nascimento', 'Endereço']
+    return render(req, 'pacientes.html', {'pacientes': pacientes, 'keys': keys})
 
 
 def paciente(req, id):
