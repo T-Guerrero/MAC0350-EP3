@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'entity.css' %}">
+  <script src="{% static 'confirm_delete.js' %}"></script>
   <h3>Dados do paciente {{paciente.nome}}</h3>
   <ul>
     <li><strong>Código do paciente: </strong>{{paciente.id}}</li>
@@ -12,10 +15,10 @@
     <li><strong>Endereço: </strong> {{paciente.endereco}}</li>
   </ul>
   <hr />
-  <h3>Exames realizados:</h3>
+  <h3>Exames realizados</h3>
   {% for exame in exames %}
     <ul>
-      <li><strong>Código: </strong> {{exame.0}}</li>
+      <li><strong>Código do exame: </strong> {{exame.0}}</li>
       <li>
         <strong>Data de solicitação do exame: </strong>
         {{exame.1}}
@@ -26,7 +29,7 @@
     </ul>
     <hr />
   {% endfor %}
-  <h3>Amostras coletadas:</h3>
+  <h3>Amostras coletadas</h3>
   {% for amostra in amostras %}
     <ul>
       <li><strong>Código da amostra: </strong>{{amostra.0}}</li>
@@ -36,7 +39,9 @@
     </ul>
     <hr />
   {% endfor %}
-  <a href="{% url "edit_paciente" paciente.id %}">Atualizar</a>
-  <a href="{% url "delete_paciente" paciente.id %}">Deletar</a>
-  <button onClick="javascript:history.go(-1);">Voltar</button>
+  <div class="actions-wrapper">
+    <a class="actions" href="{% url "pacientes" %}">Voltar</a>
+    <a class="actions" href="{% url "edit_paciente" paciente.id %}">Atualizar</a>
+    <a class="actions" id="delete" onclick="onDeleteClick('/ep3/pacientes/{{ paciente.id }}/delete')">Deletar</a>
+  </div>
 {% endblock %}

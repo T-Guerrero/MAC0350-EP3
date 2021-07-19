@@ -1,0 +1,35 @@
+ul {
+  list-style: none;
+}
+
+.actions-wrapper {
+  display: flex;
+}
+
+
+.actions {
+  display: inline;
+  text-decoration: none;
+  color: white;
+  border: 1px solid black;
+  background-color: darkslateblue;
+  padding: 5px;
+  border-radius: 4px;
+  margin: 0 5px;
+}
+
+.actions:first-child {
+  margin-right: 100px;
+  margin-left: 0;
+}
+
+#delete {
+  background-color: rgb(170, 19, 19);
+  cursor: pointer;
+}
+
+.actions:hover,
+#delete:hover {
+  background-color: #ddd;
+  color: black;
+}

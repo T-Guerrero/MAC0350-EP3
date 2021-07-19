@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'entity.css' %}">
+  <script src="{% static 'confirm_delete.js' %}"></script>
   <h3>
     Amostra do paciente {{amostra.paciente.nome}} no exame {{amostra.exame.id}}
   </h3>
@@ -14,7 +17,9 @@
     <li><strong>Vírus: </strong>{{amostra.exame.virus}}</li>
     <li><strong>Tipo do exame: </strong>{{amostra.exame.tipo}}</li>
   </ul>
-  <a href="{% url "edit_amostra" amostra.id %}">Atualizar</a>
-  <a href="{% url "delete_amostra" amostra.id %}">Deletar</a>
-  <button onClick="javascript:history.go(-1);">Voltar</button>
+  <div class="actions-wrapper">
+    <a class="actions" href="{% url "amostras" %}">Voltar</a>
+    <a class="actions" href="{% url "edit_amostra" amostra.id %}">Atualizar</a>
+    <a class="actions" id="delete" onclick="onDeleteClick('/ep3/amostras/{{ amostra.id }}/delete')">Deletar</a>
+  </div>
 {% endblock %}
