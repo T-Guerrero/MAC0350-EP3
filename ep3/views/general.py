@@ -8,9 +8,15 @@ cursor = connection.cursor()
 
 
 def home(req):
-    pacientes = Paciente.objects.all()[:5]
-    exames = Exame.objects.all()[:5]
-    amostras = Amostra.objects.all()[:5]
+    pacientes = Paciente.objects.all()
+    exames = Exame.objects.all()
+    amostras = Amostra.objects.all()
+    if (len(pacientes) > 5):
+        pacientes = pacientes[len(pacientes)-5:len(pacientes)]
+    if (len(exames) > 5):
+        exames = exames[len(exames)-5:len(exames)]
+    if (len(amostras) > 5):
+        amostras = amostras[len(amostras)-5:len(amostras)]
     context = {
         'dados': {
             "pacientes": {
