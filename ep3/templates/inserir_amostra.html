@@ -1,57 +1,57 @@
 {% extends 'base.html' %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'forms.css' %}">
 {% block content %}
-  <div class="form-content">
-    <h1>Cadastrar nova amostra</h1>
-    <form action="{% url 'create_amostra' %}" method="post">
-      {% csrf_token %}
-      {% if error_message %}
-        <p><strong>Amostra inválida</strong></p>
+  <link rel="stylesheet" type="text/css" href="{% static 'forms.css' %}">
+  <h1 class="title">Cadastrar nova amostra</h1>
+  <form action="{% url 'create_amostra' %}" method="post">
+    {% csrf_token %}
+    {% if error_message %}
+      <div class="field">
+        <p class="error-title"><strong>Amostra inválida</strong></p>
         <p><strong>{{ error_message }}</strong></p>
-      {% endif %}
-
-      {% if pacientes %}
-        <div class="field">
-          <label for="paciente">Paciente: </label>
-          <select id="paciente" name="paciente">
-            <option disabled selected>Escolha um paciente</option>
-            {% for paciente in pacientes %}
-              {% if paciente.id == amostra.paciente_id %}
-                <option selected value="{{paciente.id}}">{{paciente}}</option>
-              {% else %}
-                <option value="{{paciente.id}}">{{paciente}}</option>
-              {% endif %}
-            {% endfor %}
-          </select>
-        </div>
-      {% endif %}
-
-      {% if exames %}
-        <div class="field">
-          <label for="exame">Exame: </label>
-          <select id="exame" name="exame">
-            <option disabled selected>Escolha um exame</option>
-            {% for exame in exames %}
-              <option value="{{exame.id}}">{{exame}}</option>
-            {% endfor %}
-          </select>
-        </div>
-      {% endif %}
-      
-      <div class="field">
-        <label for="data_coleta">Data de coleta: </label>
-        <input type="date" name="data_coleta" id="data_coleta" value="{{ amostra.data_coleta }}">
-        <input type="time" name="tempo_coleta" id="tempo_coleta" value="{{ amostra.tempo_coleta }}">
       </div>
+    {% endif %}
 
+    {% if pacientes %}
       <div class="field">
-        <label for="tipo_material">Tipo de material: </label>
-        <input type="text" name="tipo_material" id="tipo_material" value="{{amostra.tipo_material}}">
+        <label for="paciente">Paciente: </label>
+        <select id="paciente" name="paciente">
+          <option disabled selected>Escolha um paciente</option>
+          {% for paciente in pacientes %}
+            <option value="{{paciente.id}}">{{paciente}}</option>
+          {% endfor %}
+        </select>
       </div>
+    {% endif %}
 
+    {% if exames %}
+      <div class="field">
+        <label for="exame">Exame: </label>
+        <select id="exame" name="exame">
+          <option disabled selected>Escolha um exame</option>
+          {% for exame in exames %}
+            <option value="{{exame.id}}">{{exame}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    {% endif %}
+    
+    <div class="field">
+      <label for="data_coleta">Data de coleta: </label>
+      <div class="field-date">
+        <input type="date" name="data_coleta" id="data_coleta">
+        <input type="time" name="tempo_coleta" id="tempo_coleta">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="tipo_material">Tipo de material: </label>
+      <input type="text" name="tipo_material" id="tipo_material">
+    </div>
+
+    <div class="field">
       <button type="submit">Cadastrar</button>
-    </form>
-  </div>
-  <button onClick="javascript:history.go(-1);">Voltar</button>
+    </div>
+  </form>
+  <a class="actions" href="{% url "amostras" %}">Voltar</a>
 {% endblock %}

@@ -1,38 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'forms.css' %}">
 {% block content %}
-  <div class="form-content">
-    <h1>Atualizar paciente {{ paciente.nome }}</h1>
-    <form action="{% url 'update_paciente' paciente.id %}" method="post">
-      {% csrf_token %}
-      {% if error_message %}
-        <p><strong>Paciente inválido</strong></p>
+  <link rel="stylesheet" type="text/css" href="{% static 'forms.css' %}">
+  <h1 class="title">Atualizar paciente</h1>
+  <form action="{% url 'update_paciente' paciente.id %}" method="post">
+    {% csrf_token %}
+    {% if error_message %}
+      <div class="field">
+        <p class="error-title"><strong>Paciente inválido</strong></p>
         <p><strong>{{ error_message }}</strong></p>
-      {% endif %}
-      
-      <div class="field">
-        <label for="cpf">CPF: </label>
-        <input type="text" name="cpf" id="cpf" value="{{ paciente.cpf }}">
       </div>
+    {% endif %}
+    
+    <div class="field">
+      <label for="cpf">CPF: </label>
+      <input type="text" name="cpf" id="cpf" value="{{ paciente.cpf }}">
+    </div>
 
-      <div class="field">
-        <label for="nome">Nome: </label>
-        <input type="text" name="nome" id="nome" value="{{ paciente.nome }}">
-      </div>
+    <div class="field">
+      <label for="nome">Nome: </label>
+      <input type="text" name="nome" id="nome" value="{{ paciente.nome }}">
+    </div>
 
-      <div class="field">
-        <label for="data_nascimento">Data de Nascimento: </label>
-        <input type="date" name="data_nascimento" id="data_nascimento" value="{{ paciente.data_nascimento }}">
-      </div>
+    <div class="field">
+      <label for="data_nascimento">Data de Nascimento: </label>
+      <input type="date" name="data_nascimento" id="data_nascimento" value="{{ paciente.data_nascimento }}">
+    </div>
 
-      <div class="field">
-        <label for="endereco">Endereço: </label>
-        <input type="text" name="endereco" id="endereco" value="{{ paciente.endereco }}">
-      </div>
+    <div class="field">
+      <label for="endereco">Endereço: </label>
+      <input type="text" name="endereco" id="endereco" value="{{ paciente.endereco }}">
+    </div>
 
+    <div class="field">
       <button type="submit">Atualizar</button>
-    </form>
-  </div>
-  <button onClick="javascript:history.go(-1);">Voltar</button>
+    </div>
+  </form>
+  <a class="actions" href="{% url "paciente" paciente.id %}">Voltar</a>
 {% endblock %}

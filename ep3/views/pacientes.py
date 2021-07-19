@@ -47,7 +47,6 @@ def create_paciente(req):
         return HttpResponseRedirect(reverse('pacientes'))
     except Exception as e:
         return render(req, 'inserir_paciente.html', {
-            'paciente': paciente,
             'error_message': "Erros: " + str(e),
         })
 

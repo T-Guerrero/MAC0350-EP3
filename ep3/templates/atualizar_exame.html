@@ -1,67 +1,73 @@
 {% extends 'base.html' %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'forms.css' %}">
 {% block content %}
-  <div class="form-content">
-    <h1>Atualizar exame {{ exame.id }}</h1>
-    <form action="{% url 'update_exame' exame.id %}" method="post">
-      {% csrf_token %}
-      {% if error_message %}
-        <p><strong>Exame inválido</strong></p>
+  <link rel="stylesheet" type="text/css" href="{% static 'forms.css' %}">
+  <h1 class="title">Atualizar exame</h1>
+  <form action="{% url 'update_exame' exame.id %}" method="post">
+    {% csrf_token %}
+    {% if error_message %}
+      <div class="field">
+        <p class="error-title"><strong>Exame inválido</strong></p>
         <p><strong>{{ error_message }}</strong></p>
-      {% endif %}
-
-      {% if pacientes %}
-        <div class="field">
-          <label for="paciente">Paciente: </label>
-          <select id="paciente" name="paciente">
-            <option disabled selected>Escolha um paciente</option>
-            {% for paciente in pacientes %}
-              {% if paciente.id == exame.paciente_id %}
-                <option selected value="{{ paciente.id }}">{{ paciente }}</option>
-              {% else %}
-                <option value="{{ paciente.id }}">{{ paciente }}</option>
-              {% endif %}
-            {% endfor %}
-          </select>
-        </div>
-      {% endif %}
-      
-      <div class="field">
-        <label for="virus">Virus: </label>
-        <input type="text" name="virus" id="virus" value="{{ exame.virus }}">
       </div>
+    {% endif %}
 
-      {% if tipos %}
-        <div class="field">
-          <label for="tipo">Tipo: </label>
-          <select name="tipo">
-            <option disabled selected>Escolha um tipo</option>
-            {% for tipo in tipos %}
-              {% if tipo == exame.tipo %}
-                <option selected value="{{ tipo }}">{{ tipo }}</option>
-              {% else %}
-                <option value="{{tipo}}">{{tipo}}</option>
-              {% endif %}
-            {% endfor %}
-          </select>
-        </div>
-      {% endif %}
-
+    {% if pacientes %}
       <div class="field">
-        <label for="data_solicitacao">Data de solicitação: </label>
+        <label for="paciente">Paciente: </label>
+        <select id="paciente" name="paciente">
+          <option disabled selected>Escolha um paciente</option>
+          {% for paciente in pacientes %}
+            {% if paciente.id == exame.paciente_id %}
+              <option selected value="{{ paciente.id }}">{{ paciente }}</option>
+            {% else %}
+              <option value="{{ paciente.id }}">{{ paciente }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+    {% endif %}
+    
+    <div class="field">
+      <label for="virus">Virus: </label>
+      <input type="text" name="virus" id="virus" value="{{ exame.virus }}">
+    </div>
+
+    {% if tipos %}
+      <div class="field">
+        <label for="tipo">Tipo: </label>
+        <select name="tipo">
+          <option disabled selected>Escolha um tipo</option>
+          {% for tipo in tipos %}
+            {% if tipo == exame.tipo %}
+              <option selected value="{{ tipo }}">{{ tipo }}</option>
+            {% else %}
+              <option value="{{tipo}}">{{tipo}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+    {% endif %}
+
+    <div class="field">
+      <label for="data_solicitacao">Data de solicitação: </label>
+      <div class="field-date">
         <input type="date" name="data_solicitacao" id="data_solicitacao" value="{{ exame.data_solicitacao }}">
         <input type="time" name="tempo_solicitacao" id="tempo_solicitacao" value="{{ exame.tempo_solicitacao }}">
       </div>
+    </div>
 
-      <div class="field">
-        <label for="data_execucao">Data de execução: </label>
+    <div class="field">
+      <label for="data_execucao">Data de execução: </label>
+      <div class="field-date">
         <input type="date" name="data_execucao" id="data_execucao" value="{{ exame.data_execucao }}">
         <input type="time" name="tempo_execucao" id="tempo_execucao" value="{{ exame.tempo_execucao }}">
       </div>
+    </div>
 
+    <div class="field">
       <button type="submit">Atualizar</button>
-    </form>
-  </div>
-  <button onClick="javascript:history.go(-1);">Voltar</button>
+    </div>
+  </form>
+  <a class="actions" href="{% url "exame" exame.id %}">Voltar</a>
 {% endblock %}
