@@ -6,7 +6,9 @@ from .general import *
 
 def exames(req):
     exames = Exame.objects.all()
-    return render(req, 'exames.html', {'exames': exames})
+    keys = ['ID', 'Paciente', 'Vírus', 'Tipo',
+            'Data de Solicitação', 'Data de Execução']
+    return render(req, 'exames.html', {'exames': exames, 'keys': keys})
 
 
 def exame(req, id):

@@ -1,17 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'entities.css' %}">
   {% if exames %}
-    <h3>Todos os exames:</h3>
-    <ul>
-      {% for exame in exames %}
-      <li>
-        <a href="{% url 'exame' exame.id %}">{{ exame }}</a>
-      </li>
-      {% endfor %}
-      <a href="{% url "new_exame" %}">Cadastrar</a>
-      <button onClick="javascript:history.go(-1);">Voltar</button>
-    </ul>
+    <h1 class="title">Exames</h1>
+    <table>
+      <tr>
+        {% for key in keys %}
+          <th>{{ key }}</th>
+        {% endfor %}
+      </tr>
+    {% for exame in exames %}
+      <tr onClick="window.location.assign('/ep3/exames/{{ exame.id }}')">
+        <td>{{ exame.id }}</td>
+        <td>{{ exame.paciente }}</td>
+        <td>{{ exame.virus }}</td>
+        <td>{{ exame.tipo }}</td>
+        <td>{{ exame.data_solicitacao }}</td>
+        <td>{{ exame.data_execucao }}</td>
+      </tr>
+    {% endfor %}
+    </table>
   {% else %}
-    <p>Sem exames cadastrados.</p>
+    <h3>Sem exames cadastrados.</h3>
   {% endif %}
+  <div class="actions-wrapper">
+    <a class="actions" href="{% url "new_exame" %}">Cadastrar</a>
+    <a class="actions" href="{% url "home" %}">Voltar</a>
+  </div>
 {% endblock %}

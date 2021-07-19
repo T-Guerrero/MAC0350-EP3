@@ -17,11 +17,7 @@
           <select id="paciente" name="paciente">
             <option disabled selected>Escolha um paciente</option>
             {% for paciente in pacientes %}
-              {% if paciente.id == exame.paciente_id %}
-                <option selected value="{{ paciente.id }}">{{ paciente }}</option>
-              {% else %}
-                <option value="{{ paciente.id }}">{{ paciente }}</option>
-              {% endif %}
+              <option value="{{ paciente.id }}">{{ paciente }}</option>
             {% endfor %}
           </select>
         </div>

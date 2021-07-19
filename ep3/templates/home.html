@@ -3,9 +3,9 @@
 {% load static %}
 {% block content %}
   <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
-  {% for chave, valor in dados.items %} 
-    {% if valor %}
-      <h2 class="title">{{ chave|capfirst }}</h2>
+  {% for chave, entidade in dados.items %} 
+    <h2 class="title">{{ chave|capfirst }}</h2>
+    {% if entidade.quantidade > 0 %}
       <h4 class="subtitle">Últimos 5 cadastrados</h4>
       <table>
       <tr>
@@ -13,20 +13,20 @@
         <th>{{ chave|remove_last_char|capfirst }}</th>
         <th>Detalhes</th>
       </tr>
-      {%for entidade in valor %}
+      {%for valor in entidade.valores %}
         <tr>
-          <td>{{ entidade.id }}</td>
-          <td>{{ entidade }}</td>
-          <td><a href="{% url chave|remove_last_char entidade.id %}">Veja Mais</a></td>
+          <td>{{ valor.id }}</td>
+          <td>{{ valor }}</td>
+          <td><a href="{% url chave|remove_last_char valor.id %}">Veja Mais</a></td>
         </tr>
       {% endfor %}
       </table>
-      {% if valor|length > 5 %}
-        <button href="{% url chave %}">Ver Todos</button>
+      {% if entidade.quantidade > 5 %}
+        <a class="actions" href="{% url chave %}">Ver Todos</a>
       {% endif %}
     {% else %}
-      <h2>Sem {{ chave }} cadastrados.</h2>
+      <h3>Sem dados cadastrados.</h3>
     {% endif %}
-    <a href="{% url "new_"|add:chave|remove_last_char %}">Cadastrar</a>
+    <a class="actions" href="{% url "new_"|add:chave|remove_last_char %}">Cadastrar</a>
   {% endfor %}
 {% endblock %}

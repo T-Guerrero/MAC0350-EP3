@@ -32,12 +32,8 @@
           <label for="exame">Exame: </label>
           <select id="exame" name="exame">
             <option disabled selected>Escolha um exame</option>
-            {% for tipo in tipos %}
-              {% if tipo == exame.tipo %}
-                <option selected value="{{ tipo }}">{{ tipo }}</option>
-              {% else %}
-                <option value="{{tipo}}">{{tipo}}</option>
-              {% endif %}
+            {% for exame in exames %}
+              <option value="{{exame.id}}">{{exame}}</option>
             {% endfor %}
           </select>
         </div>

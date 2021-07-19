@@ -9,7 +9,7 @@
 }
 
 table {
-  width: 50%;
+  width: 60%;
   border-collapse: collapse;
   text-align: center;
 }
@@ -33,4 +33,25 @@ table th {
   padding: 20px 10px;
   background-color: darkslateblue;
   color: white;
+}
+
+.actions-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions {
+  margin-top: 8px;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  border: 1px solid black;
+  background-color: darkslateblue;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.actions:hover {
+  background-color: #ddd;
+  color: black;
 }

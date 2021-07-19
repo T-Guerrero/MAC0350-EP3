@@ -6,7 +6,8 @@ from .general import *
 
 def amostras(req):
     amostras = Amostra.objects.all()
-    return render(req, 'amostras.html', {'amostras': amostras})
+    keys = ['ID', 'Paciente', 'Exame', 'Tipo de Material', 'Data de coleta']
+    return render(req, 'amostras.html', {'amostras': amostras, 'keys': keys})
 
 
 def amostra(req, id):

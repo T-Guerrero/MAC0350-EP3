@@ -13,9 +13,18 @@ def home(req):
     amostras = Amostra.objects.all()[:5]
     context = {
         'dados': {
-            "pacientes": pacientes,
-            "exames": exames,
-            "amostras": amostras
+            "pacientes": {
+                "quantidade": len(Paciente.objects.all()),
+                "valores": pacientes,
+            },
+            "exames": {
+                "quantidade": len(Exame.objects.all()),
+                "valores": exames,
+            },
+            "amostras": {
+                "quantidade": len(Amostra.objects.all()),
+                "valores": amostras,
+            }
         }
     }
     return render(req, 'home.html', context)

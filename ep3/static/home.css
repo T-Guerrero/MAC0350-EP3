@@ -24,3 +24,18 @@ table th {
   background-color: darkslateblue;
   color: white;
 }
+
+.actions {
+  text-decoration: none;
+  color: white;
+  border: 1px solid black;
+  background-color: darkslateblue;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.actions:hover {
+  background-color: #ddd;
+  color: black;
+}
+
