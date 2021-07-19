@@ -4,7 +4,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'entity.css' %}">
   <script src="{% static 'confirm_delete.js' %}"></script>
   <h3>
-    Amostra do paciente {{amostra.paciente.nome}} no exame {{amostra.exame.id}}
+    Amostra do paciente {{amostra.paciente.nome}} no exame de {{amostra.exame.tipo}}/{{amostra.exame.virus}}
   </h3>
   <ul>
     <li><strong>Código da amostra: </strong>{{amostra.id}}</li>

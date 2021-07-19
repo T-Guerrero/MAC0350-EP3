@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
   <link rel="stylesheet" type="text/css" href="{% static 'entity.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
   <script src="{% static 'confirm_delete.js' %}"></script>
   <h3>Dados do paciente {{paciente.nome}}</h3>
   <ul>
@@ -16,29 +17,37 @@
   </ul>
   <hr />
   <h3>Exames realizados</h3>
-  {% for exame in exames %}
-    <ul>
-      <li><strong>Código do exame: </strong> {{exame.0}}</li>
-      <li>
-        <strong>Data de solicitação do exame: </strong>
-        {{exame.1}}
-      </li>
-      <li><strong>Data de execução do exame: </strong> {{exame.2}}</li>
-      <li><strong>Tipo de exame: </strong> {{exame.3}}</li>
-      <li><strong>Vírus: </strong> {{exame.4}}</li>
-    </ul>
-    <hr />
-  {% endfor %}
+  {% if exames %}
+    {% for exame in exames %}
+      <ul>
+        <li><strong>Código do exame: </strong> {{exame.0}}</li>
+        <li>
+          <strong>Data de solicitação do exame: </strong>
+          {{exame.1}}
+        </li>
+        <li><strong>Data de execução do exame: </strong> {{exame.2}}</li>
+        <li><strong>Tipo de exame: </strong> {{exame.3}}</li>
+        <li><strong>Vírus: </strong> {{exame.4}}</li>
+      </ul>
+      <hr />
+    {% endfor %}
+  {% else %}
+    <h4 class="subtitle">Sem exames cadastrados para esse paciente.</h4>
+  {% endif %}
   <h3>Amostras coletadas</h3>
-  {% for amostra in amostras %}
-    <ul>
-      <li><strong>Código da amostra: </strong>{{amostra.0}}</li>
-      <li><strong>Código do exame: </strong>{{amostra.1}}</li>
-      <li><strong>Data de coleta: </strong>{{amostra.2}}</li>
-      <li><strong>Material da amostra: </strong>{{amostra.3}}</li>
-    </ul>
-    <hr />
-  {% endfor %}
+  {% if amostras %}
+    {% for amostra in amostras %}
+      <ul>
+        <li><strong>Código da amostra: </strong>{{amostra.0}}</li>
+        <li><strong>Código do exame: </strong>{{amostra.1}}</li>
+        <li><strong>Data de coleta: </strong>{{amostra.2}}</li>
+        <li><strong>Material da amostra: </strong>{{amostra.3}}</li>
+      </ul>
+      <hr />
+    {% endfor %}
+  {% else %}
+    <h4 class="subtitle">Sem amostras cadastradas para esse paciente.</h4>
+  {% endif %}
   <div class="actions-wrapper">
     <a class="actions" href="{% url "pacientes" %}">Voltar</a>
     <a class="actions" href="{% url "edit_paciente" paciente.id %}">Atualizar</a>
